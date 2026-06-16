@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchelonMODULAR ISO-Concept | 2026 Manual</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #e2e8f0; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .glass { 
+            background: rgba(30, 41, 59, 0.4); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <nav class="border-b border-slate-800 bg-slate-950/80 backdrop-blur-md px-6 py-4 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-sm font-bold text-white tracking-widest uppercase">EchelonMODULAR ISO-Concept</h1>
+                <p class="text-[10px] text-slate-500 mono">DANIEL MARTINS | VERTASCAN | 2026</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <button onclick="switchModel('8dc213575e444132ae25e15c84c89bbc')" class="px-4 py-1.5 glass text-[10px] rounded hover:bg-white/5 transition">UNIT A</button>
+                <button onclick="switchModel('98ff41ad4b8e42ffbfed4466ef47e8f8')" class="px-4 py-1.5 glass text-[10px] rounded hover:bg-white/5 transition">CORE</button>
+                <button onclick="switchModel('4afdfdd59fd94123b7296329e8475a39')" class="px-4 py-1.5 glass text-[10px] rounded hover:bg-blue-900/50 border-blue-500/30 transition">RES-X</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-6 space-y-8">
+        
+        <!-- Central 3D Viewer -->
+        <section class="flex justify-center">
+            <div class="w-full max-w-5xl aspect-video glass rounded-xl overflow-hidden border border-slate-700 shadow-2xl">
+                <iframe id="sketchfab-frame" class="w-full h-full" title="Echelon Modular" frameborder="0" allowfullscreen allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/8dc213575e444132ae25e15c84c89bbc/embed"></iframe>
+            </div>
+        </section>
+
+        <!-- Technical Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Accordion Panels -->
+            <div class="lg:col-span-1 space-y-4">
+                <div class="glass rounded-lg overflow-hidden">
+                    <button onclick="toggle('struct')" class="w-full flex justify-between items-center p-4 text-xs font-semibold uppercase tracking-widest">Structural <span id="struct-icon">+</span></button>
+                    <div id="struct" class="hidden p-4 border-t border-white/5 text-[11px] text-slate-400 leading-relaxed space-y-2">
+                        <p><strong>Steel:</strong> ASTM A500 Grade C Structural HSS.</p>
+                        <p><strong>Seismic:</strong> Category D (ASCE 7-22).</p>
+                    </div>
+                </div>
+                <div class="glass rounded-lg overflow-hidden">
+                    <button onclick="toggle('mech')" class="w-full flex justify-between items-center p-4 text-xs font-semibold uppercase tracking-widest">Mechanical <span id="mech-icon">+</span></button>
+                    <div id="mech" class="hidden p-4 border-t border-white/5 text-[11px] text-slate-400 leading-relaxed">
+                        <p>VRF Heat Pump / DOAS / MERV-13 Filtration.</p>
+                    </div>
+                </div>
+                <div class="glass rounded-lg overflow-hidden">
+                    <button onclick="toggle('elec')" class="w-full flex justify-between items-center p-4 text-xs font-semibold uppercase tracking-widest">Electrical <span id="elec-icon">+</span></button>
+                    <div id="elec" class="hidden p-4 border-t border-white/5 text-[11px] text-slate-400 leading-relaxed">
+                        <p>200A Integrated Panel / Cat6A Data backbone.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Asset Cards -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Site/Layout Plan -->
+                <div class="glass p-4 rounded-xl">
+                    <h3 class="text-xs font-bold uppercase tracking-widest mb-4">Master Layout & Schematic</h3>
+                    <img src="ECHELON.jpg" alt="ECHELON.jpg" class="w-full h-auto object-contain rounded border border-slate-700" onerror="this.src='https://placehold.co/1200x675/1e293b/94a3b8?text=ECHELON+Schematic'">
+                </div>
+
+                <!-- Facade (Secondary) -->
+                <div class="glass p-4 rounded-xl">
+                    <h3 class="text-xs font-bold uppercase tracking-widest mb-4">Facade Elevation</h3>
+                    <img src="echelon facade.jpg" alt="echelon facade.jpg" class="w-full h-auto object-contain rounded border border-slate-700" onerror="this.src='https://placehold.co/1200x675/1e293b/94a3b8?text=Echelon+Facade'">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function switchModel(uid) {
+            document.getElementById('sketchfab-frame').src = `https://sketchfab.com/models/${uid}/embed`;
+        }
+        function toggle(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            content.classList.toggle('hidden');
+            icon.innerText = content.classList.contains('hidden') ? '+' : '-';
+        }
+    </script>
+</body>
+</html>
